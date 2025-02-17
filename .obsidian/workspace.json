@@ -1,0 +1,180 @@
+{
+  "main": {
+    "id": "681d44c8d3fcf1f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "850b245946289f08",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c2cf3ea34ba3335a",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "cbc81915dbd5d78e",
+    "type": "split",
+    "children": [
+      {
+        "id": "69173f6ec23f219b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "49f1a95832467ace",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "2cfe99b3179bdac8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#Оператор",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "cde5ff1e2c5343e5",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "5ecf40bb5bad1dfe",
+    "type": "split",
+    "children": [
+      {
+        "id": "a7e494ecda91c246",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "20571e573d445f11",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "2462fbc943999d85",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "87937b84d4c4f7e0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "b2e70074ad864908",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {},
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "c2cf3ea34ba3335a",
+  "lastOpenFiles": [
+    "Learning/Linux.md",
+    "Резюме.md",
+    "Untitled.canvas",
+    "2025-02-17.md",
+    "Learning/Git.md",
+    "Learning/Docker.md",
+    "Learning/C & C++.md",
+    "Learning/ML.md",
+    "Learning/Python.md",
+    "Learning/SQL psql.md",
+    "Learning.md",
+    "Планы на второе полугодие.md",
+    "Learning",
+    "IMG_20250130_200518_951.jpg",
+    "photo_2024-09-10_18-55-37.jpg",
+    "home/alex/Downloads.md",
+    "home/alex/Downloads 1.md",
+    "home/alex",
+    "home"
+  ]
+}
