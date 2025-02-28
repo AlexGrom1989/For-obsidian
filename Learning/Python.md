@@ -109,7 +109,7 @@ foo() # -> 10
 
 ---
 
-#### Decorators
+### Decorators
 
 > Декоратор с аргументами
 
@@ -973,4 +973,55 @@ output will take 5.0s:
 3
 4
 after async for
+```
+---
+
+### Smth in functools and itertools
+
+> `filter(function, iterable)` - выборка из iterable. `function -> bool`
+
+```python
+arr = [1, 2, 3, 5]
+filtered_arr = filter(lambda x: x%2==1, arr)
+# -> [1, 3, 5]
+
+arr = [0, 1, False, True, "", "hello", None, [], [1, 2, 3]]
+true_arr = filter(None, arr)
+# -> [1, True, 'hello', [1, 2, 3]]
+```
+
+> `functools.reduce(function, iterable, initializer=None)` - применяет функцию `function` каждого следующего элемента `iterable` к предыдущему результату работы function, начиная с первого элемента `iterable` или с `initializer`.
+
+```python
+from functools import reduce # -> с англ. "уменьшить"
+
+arr = [1, 2, 3]
+res1 = reduce(lambda x, y: x + y, arr) # -> 6
+res2 = reduce(lambda x, y: x + y, arr, 1) # -> 7
+```
+
+> `itertools.chain(*iterables)` - Объединение итерируемых объектов
+
+```python
+from itertools import chain
+
+arr = [[1, 2, 3], [4, 5, 6], [[1, 2]]]
+chain(*arr) # -> [1, 2, 3, 4, 5, 6, [1, 2]]
+```
+
+> `itertools.groupby(iterable, key=None)` - группировка элементов на основе ключа заранее отсортированного`iterable`. ` -> итератор из кортежей (ключ, итератор по группе эл-ов)`. 
+
+```python
+from itertools import groupby
+
+arr = ['apple', 'banana', 'cherry', 'date', 'strawberry', 'fig']
+arr.sort(key=len)
+res = groupby(arr, key=len)
+
+[(i[0], list(i[1])) for i in res] # -> 
+# [ (3, ['fig']),
+#   (4, ['date']),
+#   (5, ['apple']),
+#   (6, ['banana', 'cherry']),
+#   (10, ['strawberry']) ]
 ```

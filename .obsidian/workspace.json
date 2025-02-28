@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "850b245946289f08",
+        "id": "e20b6eb8f1896399",
         "type": "tabs",
         "children": [
           {
-            "id": "c2cf3ea34ba3335a",
+            "id": "cbefa2b98d826f62",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#Оператор",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -155,18 +155,19 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c2cf3ea34ba3335a",
+  "active": "cbefa2b98d826f62",
   "lastOpenFiles": [
+    "Learning/Python.md",
+    "Learning/SQL psql.md",
+    "Learning/Docker.md",
+    "Learning/C & C++.md",
+    "Learning/Frameworks.md",
     "Learning/Linux.md",
     "Резюме.md",
     "Untitled.canvas",
     "2025-02-17.md",
     "Learning/Git.md",
-    "Learning/Docker.md",
-    "Learning/C & C++.md",
     "Learning/ML.md",
-    "Learning/Python.md",
-    "Learning/SQL psql.md",
     "Learning.md",
     "Планы на второе полугодие.md",
     "Learning",
