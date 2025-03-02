@@ -11,10 +11,14 @@
             "id": "cbefa2b98d826f62",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Learning/SQL psql.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "SQL psql"
             }
           }
         ]
@@ -74,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "5ecf40bb5bad1dfe",
@@ -157,13 +162,13 @@
   },
   "active": "cbefa2b98d826f62",
   "lastOpenFiles": [
-    "Learning/Python.md",
+    "Резюме.md",
     "Learning/SQL psql.md",
+    "Learning/Python.md",
     "Learning/Docker.md",
     "Learning/C & C++.md",
     "Learning/Frameworks.md",
     "Learning/Linux.md",
-    "Резюме.md",
     "Untitled.canvas",
     "2025-02-17.md",
     "Learning/Git.md",

@@ -1,21 +1,26 @@
+### Университетские конспекты
+
 Примеры смотреть в `/home/alex/Desktop/Learn_DevOps_sql/Learn_sql_git_linux`
 
 ```sql
+|*----------------*|
 Создание и Удаление{
 
-CREATE DATABASE ....; => создание бд (CREATE DATABASE shop;)
-DROP DATABASE ....; => удаление бд (DROP DATABASE shop;)
+CREATE DATABASE ....; --=> создание бд (CREATE DATABASE shop;)
+DROP DATABASE ....; --=> удаление бд (DROP DATABASE shop;)
 }
 
+|*--------*|
 Типы данных{
 
 INT
-VARCHAR => маленький текст(255 симв)
-TEXT => большой текст(65535 симв)
+VARCHAR --=> маленький текст(255 симв)
+TEXT --=> большой текст(65535 симв)
 DATE
 JSON
 }
 
+|*-----------------------*|
 Создание/удаление таблицы {
 
 CREATE TABLE users (
@@ -24,30 +29,86 @@ CREATE TABLE users (
     bio TEXT,
     birth DATE,
     PRIMARY KEY(id) 	#обеспечивает уникальность полей в скобках (в данном случае id)
-); => создание
+); --=> создание
 
-DROP TABLE users; => удаление
+DROP TABLE users; --=> удаление
 }
 
+|*-----------------------------------*|
 Добавление/удаление столбца в таблице {
 
-ALTER TABLE users ADD password VARCHAR (32); => добавление 	#добавление столбца password в таблицу users
-ALTER TABLE users DROP password VARCHAR (32); => удаление
+ALTER TABLE users ADD password VARCHAR (32); --=> добавление 	#добавление столбца password в таблицу users
+ALTER TABLE users DROP password VARCHAR (32); --=> удаление
 }
 
+|*---------------------------------------------*|
 Добавление/обновление/удаление записей в ячейках{
 
 INSERT INTO users (name, bio, birth) VALUES
     ('Alex', 'My Way', '2005-04-04'),
     ('Alexey', 'My Way2', '2005-05-05'),
-    ('Alexandr', 'My Way3', '2005-06-06'); => добавление
+    ('Alexandr', 'My Way3', '2005-06-06'); --=> добавление
     
-UPDATE users SET name = 'Maxim', bio = 'Maxim Way' WHERE id >= 2 AND name = 'Alex'; => обновление
+UPDATE users SET name = 'Maxim', bio = 'Maxim Way' WHERE id >= 2 AND name = 'Alex'; --=> обновление
 
-ALTER TABLE users CHANGE birth birth2 DATE NOT NULL; => изменение столбца и его параметров 	#birth превратился в birth2, но теперь отличный от паустого
+ALTER TABLE users CHANGE birth birth2 DATE NOT NULL; --=> изменение столбца и его параметров 	#birth превратился в birth2, но теперь отличный от паустого
 
-DELETE FROM users WHERE id = 2 OR name = 'Maxim'; => удаление строки
-TRUNCATE users; => очистка всей таблицы
+DELETE FROM users WHERE id = 2 OR name IS NULL; --=> удаление строки (важно, что IS null, = null не работает!)
+
+TRUNCATE users; --=> очистка всей таблицы
+}
+
+|*-------------------*|
+Сортировка со сдвигом {
+
+SELECT age FROM clients ORDER BY age DESC OFFSET 1 LIMIT 1; --=> offset n <=> пропустить первые n записей. Т.о. получим второго по старости клиента.
+}
+
+|*-------------------*|
+Агрегирующие функции {
+
+SELECT car_mark, name, count(*) FROM clients GROUP BY car_mark, name; --=> группировка клиентов по марке машины и имени. Фукнция агрегации - count(*).
+
+SELECT car_mark, name, count(*) OVER (PARTITION BY car_mark) FROM clients;
+--=> partition - аналог group by, но данные не группируются, а просто каждому классу группировки добавляется результат агрегирующей функции. (заметим, что не обязательно группировать по всем выводимым колонкам)  
+
+Приятнее смотреть: ...OVER (PARTITION BY car_mark ORDER BY car_mark)...
+}
+
+|*-------------------------*|
+Ранжирующие оконные функции {
+
+SELECT ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY check_in_date) booking_num FROM bookings;  --=> получим для каждого клиента отсортированный и ПРОНУМЕРОВАННЫЙ список его ЗАСЕЛЕНИЙ по дате.
+
+RANK() -- если строки i и (i+1) совпадают,то их ранг =i, а ранг (i+2)ой строки(отличной от двух предыдущих) =(i+1).
+
+DENSE_RANK() -- если строки i и (i+1) совпадают,то их ранг =i, а ранг (i+2)ой строки(отличной от двух предыдущих) =(i+2).
+}
+
+|*--------------*|
+Функции смещения {
+
+SELECT LAG(room_number) OVER (PARTITION BY client_id ORDER BY check_in_date) previous_room FROM bookings; --=> получим для каждого клиента поле с указанием номера комнаты, в которую он заселялся в ПРОШЛЫЙ раз. (если он ранее не заселялся, то поле будет NULL)
+SELECT LEAD(room_number) ...; --=> ... в СЛЕДУЮЩИЙ раз.
+
+SELECT FIRST_VALUE(room_number) ...; --=> ПЕРВОЕ значение столбца в указанной группе\партиции.
+SELECT LAST_VALUE(room_number) ...; --=> ПОСЛЕДНЕЕ ... .
+SELECT NTH_VALUE(room_number, 6) ...; --=> ШЕСТОЕ ... .
+ 
+}
+
+|*----------------*|
+Операторы CASE WHEN ELSE END{
+
+SELECT 
+	room_number,
+	room_price,
+	CASE 
+		WHEN room_price > 5000 THEN 'Expensive room'
+		WHEN room_price > 2500 AND room_price < 5000 THEN 'Normal room'
+		ELSE 'Cheap room'
+	END as room_price_category
+FROM rooms;
 }
 
 -- Выше лишь малая часть всего синтаксиса SQL, дальше круче...
@@ -193,3 +254,17 @@ SELECT * FROM poisk;
 select distinct с.руковод, сс.фио, сс.руковод from сотрудники с join сотрудники сс on с.руковод = сс.номер_ст where сс.руковод in (select начальник from отделы);
 
 ```
+---
+
+### Конспекты по Цифровой Кафедре
+
+> [!abstract] SQL - (Structured Query Language)
+> Включает в себя: 
+> - DDL (Data Definition Language) - определение структур данных
+> - DML (Data Manipulation Language) - управление данными
+> - DQL (Data Query Language) - извлечение данных из БД
+
+
+
+
+
