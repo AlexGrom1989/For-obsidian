@@ -1,6 +1,12 @@
 ### Университетские конспекты
 
-Примеры смотреть в `/home/alex/Desktop/Learn_DevOps_sql/Learn_sql_git_linux`
+> [!abstract] SQL - (Structured Query Language)
+> Включает в себя: 
+> - DDL (Data Definition Language) - определение структур данных
+> - DML (Data Manipulation Language) - управление данными
+> - DQL (Data Query Language) - извлечение данных из БД
+
+Примеры смотреть в `/home/alex/Desktop/Learn_DevOps_sql/Learn_sql_git_linux` или ниже в этом файле.
 
 ```sql
 |*----------------*|
@@ -252,19 +258,326 @@ SELECT * FROM poisk;
 
 -- Решение второй задачи РК 2.2 БД (база данных fmm)
 select distinct с.руковод, сс.фио, сс.руковод from сотрудники с join сотрудники сс on с.руковод = сс.номер_ст where сс.руковод in (select начальник from отделы);
+```
+---
+
+### Примеры .sql файлов
+
+#### first
+> Создание таблиц. Их заполнение. Объявление Функций. Работа с пользователями\ролями\правами доступа.
+
+```sql
+-- Создаем студентов
+create table students (
+	id bigserial primary key,
+	name text not null,
+	groupID text not null,
+	dateOfBirth date,
+	city text,
+	admission_year integer
+);
+
+
+-- Создаем города
+create table cities (
+	name text not null
+);
+-- Заполняем города
+insert into cities 
+values ('МСК'), ('СПБ'), ('ЕКБ'), ('ЧЛБ'), ('НН'), ('ВН'), ('КРД'), ('УФА'), ('СЕВ'), ('КРОП');
+
+
+-- Заполняем студентов
+create or replace function insert_func() returns void as $$
+declare
+	i integer;
+	j integer;
+	fio_code text := '';
+	st_date date := '2000-01-01';
+	fin_date date := '2006-01-01';
+	birth date;
+	admis_date integer;
+	letter text[] := array['П', 'К', 'З', 'Ж', 'Е', 'Д', 'Г', 'В', 'Б', 'А', 'Ч', 'Т', 'С', 'Р', 'Ф', 'Л', 'М', 'Н', 'О', 'Ш'];
+	
+begin
+	for i in 1..100000000 loop
+		
+		for j in 1..3 loop
+			fio_code := fio_code || letter[1+floor(random()*20)];
+		end loop;
+		
+		birth := st_date + (random() * (fin_date - st_date + 1))::int;
+		admis_date := date_part('YEAR', birth) + 18;
+		
+		insert into students (name, groupID, dateOfBirth, city, admission_year)
+		values (
+			'Student ' || fio_code || '_' || i,
+			letter[1+floor(random()*20)] || '::' || admis_date || '::' || (i % 17000),
+			birth,
+			(select name from cities order by random() limit 1),
+			admis_date
+		);
+		
+		fio_code := '';
+		birth := NULL;
+		admis_date := NULL;
+		
+	end loop;
+end $$ language plpgsql;
+
+select insert_func();
+
+-- Создаем факультеты
+create table faculties (
+	faculty_code text primary key,
+	name text,
+	students_amount integer default 5100000,
+	specs jsonb default '{"specs": ["Basic", "Intermediate", "Professional"]}',
+	dekan text
+);
+
+-- Заполняем факультеты
+insert into faculties (faculty_code, name, dekan)
+values 
+('П', 'Психология', 'Петров Петр Петрович'),
+('К', 'Кибернетика', 'Кузнецов Сергей Иванович'),
+('З', 'Здравоохранение', 'Зайцева Анна Викторовна'),
+('Ж', 'Журналистика', 'Жукова Мария Александровна'),
+('Е', 'Экономика', 'Егоров Алексей Дмитриевич'),
+('Д', 'Дизайн', 'Дмитриев Денис Сергеевич'),
+('Г', 'География', 'Горшков Игорь Николаевич'),
+('В', 'Востоковедение', 'Васильев Николай Андреевич'),
+('Б', 'Биология', 'Баранов Алексей Владимирович'),
+('А', 'Архитектура', 'Александрова Ольга Петровна'),
+('Ч', 'Человеческие ресурсы', 'Чернов Илья Владимирович'),
+('Т', 'Технологии', 'Тимофеев Андрей Сергеевич'),
+('С', 'Социология', 'Смирнова Наталья Васильевна'),
+('Р', 'Реклама', 'Рябов Максим Анатольевич'),
+('Ф', 'Филология', 'Федорова Татьяна Сергеевна'),
+('Л', 'Логистика', 'Лебедев Владислав Константинович'),
+('М', 'Медицинские науки', 'Мартынова Екатерина Юрьевна'),
+('Н', 'Неврология', 'Никитин Виктор Павлович'),
+('О', 'Огневое искусство', 'Овчинникова Светлана Алексеевна'),
+('Ш', 'Шумовые технологии', 'Широков Юрий Валентинович');
+
+-- Создаем таблицу обучения
+create table edu (
+	groupID text primary key,
+	students_amount integer,
+	mean_stipend integer default 2700,
+	faculty_code text references faculties(faculty_code),
+	edu_year integer default 2024
+);
+
+-- Заполняем таблицу обучения
+create or replace function insert_edu() returns void as $$
+declare 
+	stipends integer[] := array[0, 2700, 3500, 4500];
+begin
+	insert into edu (groupID, students_amount)
+	select groupid, count(*) from students group by groupid order by groupid;
+	
+	update edu set 
+		mean_stipend = stipends[1 + floor(random() * 3)],
+		faculty_code = left(groupid, 1);
+end
+$$ language plpgsql;
+
+select insert_edu();
+
+-- Создадим пользователя test с подключением к нашей БД
+create user test with password 'test12345';
+grant connect on database "simpleStudBase" to test;
+
+-- Выдадим полные права для пользователя test на таблицу students
+grant select, insert, delete, update on students to test;
+grant usage, select on sequence students_id_seq to test; -- права к последовательности id-шников студентов
+
+-- Выдадим ограниченные права записи для пользователя на таблицу faculties
+grant select, update (specs) on faculties to test;
+
+-- Выдадим только право чтения для пользователя test на таблицу edu
+grant select on edu to test;
+
+-- Представление, описывающее фактическое кол-во человек на факультете
+create view stud_amount_in_faculty_view as 
+select left(students.groupid, 1) as fac_code, count(*) as stud_amount from students inner join edu on edu.groupid = students.groupid group by fac_code;
+
+-- Создадим роль (роль можно присваивать нескольким пользователям)
+create role test_role;
+
+--Выдадим особые права этой роли
+grant update (mean_stipend, edu_year) on edu to test_role;
+grant select on stud_amount_in_faculty_view to test_role;
+
+-- Присвоим роль test_role пользователю test
+grant test_role to test;
 
 ```
 ---
 
-### Конспекты по Цифровой Кафедре
+#### second
 
-> [!abstract] SQL - (Structured Query Language)
-> Включает в себя: 
-> - DDL (Data Definition Language) - определение структур данных
-> - DML (Data Manipulation Language) - управление данными
-> - DQL (Data Query Language) - извлечение данных из БД
+> Определение функций. Оценка работы индексов. Работа с полнотекстовым поиском. Оптимизация вставки/удаления/изменения. Партиционированные таблицы(масштабирование)
+
+```sql
+-- Определяем функцию вывода списка группы
+create or replace function get_group(gr_id text) returns refcursor as 
+$$
+declare
+	curs1 refcursor := 'curs1';
+begin
+	open curs1 for select * from students where groupid = gr_id;
+	return curs1;
+end;
+$$ language plpgsql;
+
+-- Вызов созданной функции
+select * from get_group('Б::2022::3');
+
+-- Определяем функцию подсчета фактического числа студентов на факультете
+create or replace function faculty_amount(fac_id text) returns integer as
+$$
+declare
+	amount integer := 0;
+	r edu%rowtype;
+	fac_code text := null;
+begin
+	select faculty_code into fac_code from faculties where faculty_code = fac_id;
+	if fac_code is null then
+		raise exception 'ERROR: Факультет с кодом % не найден!', fac_id;
+	else
+		for r in (select * from edu where groupid like (fac_id || '%')) loop
+			amount := amount + r.students_amount;
+		end loop;
+	end if;
+	return amount;
+end;
+$$ language plpgsql;
+
+-- Вызов сделанной функции
+select * from faculty_amount('П');
+
+/*
+Преимущество функций перед представлениями заключается в их универсальности. Имеется в виду, что функции могут возвращать любые типы данных, в том числе и сущности(таблицы), тем самым включая в себя функционал представлений.
+*/
+
+------------------------
 
 
+-- Оценка работы индексов на запросах с фильтрацией над одной таблицей
+select * from edu
+where students_amount between 49 and 52 and groupid ~ '::2019::' limit 5;
 
+explain (analyze, costs off)
+select * from edu
+where students_amount between 49 and 52 and groupid ~ '::2019::' limit 5;
 
+create index idx_edu_49_stud_amount_52_group_2019 on edu (students_amount, groupid);
 
+set enable_seqscan = off;
+
+explain (analyze, costs off)
+select * from edu
+where students_amount between 49 and 52 and groupid ~ '::2019::' limit 5;
+
+set enable_seqscan = on;
+
+-- Оценка работы индексов на запросах с фильтрацией над несколькими таблицами
+
+-- Число студентов из городов, код которых кончается на "Б"
+select c.name, count(id) 
+from cities c join students s on c.name = s.city
+where s.admission_year in (2018, 2019)
+and c.name like '%Б'
+group by c.name;
+
+explain (analyze, costs off) select c.name, count(id) 
+from cities c join students s on c.name = s.city
+where s.admission_year in (2018, 2019)
+and c.name like '%Б'
+group by c.name;
+
+create index idx_students_adm_year on students(admission_year);
+create index idx_cities_name on cities(name);
+
+set enable_seqscan = off;
+
+explain (analyze, costs off) select c.name, count(id) 
+from cities c join students s on c.name = s.city
+where s.admission_year in (2018, 2019)
+and c.name like '%Б'
+group by c.name;
+
+set enable_seqscan = on;
+
+------------------
+-- Работа с полнотекстовым поиском
+
+-- просто текст
+
+create index idx_faculty_describe_lang
+on faculties using gin(to_tsvector('russian', description));
+
+explain analyze
+select faculty_code, description from faculties
+where to_tsvector('russian', description) @@ to_tsquery('english');
+
+-- массивы
+
+create index idx_faculty_exams 
+on faculties using gin (exams);
+
+explain analyze
+select faculty_code, exams from faculties
+where exists (
+        select * from unnest(exams) as elem -- с помощью unnest делаем массив таблицей
+        where elem ~ '#tech'
+);
+
+-- json
+
+create index idx_faculty_specs 
+on faculties using gin(specs);
+
+explain analyze
+select faculty_code, specs from faculties
+where specs @> '{"rating": "High"}';
+
+----
+-- Оптимизируем вставку/удаление/изменение занчений в большую таблицу
+
+-- для чтения добавим популярные индексы
+create index idx_students_groupid on students (groupid);
+create index idx_students_name on students (name);
+create index idx_students_adm_year on students (admission_year);
+
+-- для удаления разделим данные на секции (секционирование)
+-- Cоздадим партиционированную таблицу-клон 
+create table modern_students (
+	id bigserial,
+	name text not null,
+	groupID text not null,
+	dateOfBirth date,
+	city text,
+	admission_year integer
+)partition by range(admission_year);
+
+-- Разбиваем ее на части
+create table students_before_2019 partition of modern_students
+for values from (0) to (2019);
+create table students_after_2019 partition of modern_students
+for values from (2019) to (2030);
+
+--запишем старые данные в новую партиционную таблицу
+insert into moder_students select * from students;
+
+--для добавления большого объема данных следует очищать ресурсозатратные индексы
+drop index idx_students_pkey;
+
+insert into students values <новые данные>;
+
+create index idx_students_pkey on students (id);
+
+```
+---
