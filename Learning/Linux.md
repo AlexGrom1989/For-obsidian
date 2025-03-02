@@ -114,7 +114,7 @@ bash => запуск .bash файла (bash bash_script.sh)
 	res=$((input_num1+input_num_2)) => сложение чисел
 	read -p "Input something" input_num_1 => чтение в переменную input_num_1
 
-	#Условный оператор if
+	#Условный оператор if 
 	if [ 5 == "$input_num_1" ]; then 
 		echo "Все правильно, кайфуй!"
 	elif [ "$input_num_1" == 1 ]; then
