@@ -218,3 +218,159 @@ int main()
     return 0;
 }
 ```
+
+### Пример программы с классом, merge-сортировкой, вектором, стат переменной и algorithm
+
+```cpp
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+const int K = 3000; // Макс число деталей
+const int STRING_SIZE = 5; // длина строки
+
+struct Detail {
+    char partCode[STRING_SIZE];        // Код детали
+    char materialCode[STRING_SIZE];   // Код материала
+    char unit[STRING_SIZE];          // Единица измерения
+    int workshopNumber;             // Номер цеха
+    double consumptionRate;        // Норма расхода
+
+    bool operator<(const Detail& other) const {
+        return strcmp(partCode, other.partCode) < 0;
+    }
+
+    bool operator==(const Detail& other) const {
+        return strcmp(partCode, other.partCode) == 0;
+    }
+};
+
+void printTable(const Detail table[], int size) {
+    cout << "Код детали | Код материала | Единица измерения | Номер цеха | Норма расхода\n";
+    cout << "-----------------------------------------------------------------\n";
+    for (int i = 0; i < size; i++) {
+        cout << table[i].partCode << "         | " << table[i].materialCode << "           | "
+             << table[i].unit << "               | " << table[i].workshopNumber << "          | "
+             << table[i].consumptionRate << endl;
+    }
+    cout << endl;
+}
+
+int binarySearch(const Detail table[], int size, const char* partCode) {
+    int l = 0;
+    int r = size - 1;
+    while (l <= r) {
+        int m = (l + r) / 2;
+        int cmp = strcmp(table[m].partCode, partCode);
+        if (cmp == 0) return m;
+        if (cmp < 0) l = m + 1;
+        else r = m - 1;
+    }
+    return -1;
+}
+
+void merge(Detail table[], int l, int m, int r) {
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    Detail L[n1], R[n2];
+
+    for (int i = 0; i < n1; i++)
+        L[i] = table[l + i];
+    for (int i = 0; i < n2; i++)
+        R[i] = table[m + 1 + i];
+
+    int i = 0, j = 0, k = l;
+
+    while (i < n1 && j < n2) {
+        if (L[i] < R[j]) {
+            table[k] = L[i];
+            i++;
+        } else {
+            table[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        table[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        table[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void mergeSort(Detail table[], int l, int r) {
+    if (l < r) {
+        int m = l + (r - l) / 2;
+        mergeSort(table, l, m);
+        mergeSort(table, m + 1, r);
+        merge(table, l, m, r);
+    }
+}
+
+void markDeleting(Detail table[], int& size, const char* partCode, int threshold = 3) {
+    static int volume = 0;
+
+    for (int i = 0; i < size; i++) {
+        if (strcmp(table[i].partCode, partCode) == 0) {
+            strcpy(table[i].partCode, "DELETED");
+            volume++;
+        }
+    }
+
+    if (volume >= threshold) {
+        int newSize = 0;
+        for (int i = 0; i < size; i++) {
+            if (strcmp(table[i].partCode, "DELETED") != 0) {
+                table[newSize] = table[i];
+                newSize++;
+            }
+        }
+        size = newSize;
+        volume = 0;
+    }
+}
+
+int main() {
+    Detail table[K] = {
+        {"005", "M123", "кг", 1, 2.5},
+        {"002", "M456", "шт", 2, 10},
+        {"003", "M789", "м", 1, 3.0},
+        {"004", "M123", "кг", 3, 1.8},
+        {"001", "M999", "шт", 2, 5},
+    };
+
+    int size = 5;
+
+    cout << "Исходная таблица:\n";
+    printTable(table, size);
+
+    mergeSort(table, 0, size - 1);
+    cout << "Таблица после сортировки:\n";
+    printTable(table, size);
+
+    char searchCode[STRING_SIZE] = "003";
+    int index = binarySearch(table, size, searchCode);
+    if (index != -1)
+        cout << "Деталь с кодом " << searchCode << " найдена: "
+             << table[index].materialCode << ", " << table[index].unit << endl;
+    else
+        cout << "Деталь с кодом " << searchCode << " не найдена.\n";
+
+    char deleteCode[STRING_SIZE] = "002";
+    markDeleting(table, size, deleteCode);
+    cout << "Таблица после удаления детали с кодом " << deleteCode << ":\n";
+    printTable(table, size);
+
+    return 0;
+}
+```
+

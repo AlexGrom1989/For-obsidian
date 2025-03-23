@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "24145a8da43b35a7",
+        "id": "47f47266b19efd38",
         "type": "tabs",
         "children": [
           {
-            "id": "dca6a8eb1ee601eb",
+            "id": "eaa1733a2c191acb",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "5ecf40bb5bad1dfe",
@@ -159,18 +160,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "dca6a8eb1ee601eb",
+  "active": "eaa1733a2c191acb",
   "lastOpenFiles": [
-    "Learning/Python.md",
     "Learning/Git.md",
-    "Learning/Linux.md",
-    "Learning/Frameworks.md",
-    "Learning/ML.md",
-    "Техническое задание.md",
-    "Learning/SQL psql.md",
-    "Резюме.md",
-    "Learning/Docker.md",
     "Learning/C & C++.md",
+    "Learning/Docker.md",
+    "Learning/Frameworks.md",
+    "Learning/Linux.md",
+    "Learning/Python.md",
+    "Learning/ML.md",
+    "Learning/SQL psql.md",
+    "Техническое задание.md",
+    "Резюме.md",
     "Untitled.canvas",
     "2025-02-17.md",
     "Learning.md",

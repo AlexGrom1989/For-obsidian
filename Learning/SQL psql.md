@@ -79,6 +79,9 @@ SELECT car_mark, name, count(*) OVER (PARTITION BY car_mark) FROM clients;
 --=> partition - аналог group by, но данные не группируются, а просто каждому классу группировки добавляется результат агрегирующей функции. (заметим, что не обязательно группировать по всем выводимым колонкам)  
 
 Приятнее смотреть: ...OVER (PARTITION BY car_mark ORDER BY car_mark)...
+
+SELECT min(age) FROM clients 
+	UNION SELECT max(age) FROM clients; --=> объединение/склейка таблиц (в данном случае результат - две строчки)
 }
 
 |*-------------------------*|
@@ -86,9 +89,9 @@ SELECT car_mark, name, count(*) OVER (PARTITION BY car_mark) FROM clients;
 
 SELECT ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY check_in_date) booking_num FROM bookings;  --=> получим для каждого клиента отсортированный и ПРОНУМЕРОВАННЫЙ список его ЗАСЕЛЕНИЙ по дате.
 
-RANK() -- если строки i и (i+1) совпадают,то их ранг =i, а ранг (i+2)ой строки(отличной от двух предыдущих) =(i+1).
+RANK() -- если строки i и (i+1) совпадают,то их ранг =i, а ранг (i+2)ой строки(отличной от двух предыдущих) =(i+2).
 
-DENSE_RANK() -- если строки i и (i+1) совпадают,то их ранг =i, а ранг (i+2)ой строки(отличной от двух предыдущих) =(i+2).
+DENSE_RANK() -- если строки i и (i+1) совпадают,то их ранг =i, а ранг (i+2)ой строки(отличной от двух предыдущих) =(i+1).
 }
 
 |*--------------*|
@@ -103,7 +106,7 @@ SELECT NTH_VALUE(room_number, 6) ...; --=> ШЕСТОЕ ... .
  
 }
 
-|*----------------*|
+|*-------------------------*|
 Операторы CASE WHEN ELSE END{
 
 SELECT 
@@ -116,6 +119,43 @@ SELECT
 	END as room_price_category
 FROM rooms;
 }
+
+|*--------*|
+Подзапросы и СТЕ(конструкция WITH){ --вложенные select'ы 
+
+SELECT room_number, с, DENSE_RANK() over (
+    ORDER BY c DESC
+) AS booking_rank FROM (
+    SELECT room_number, count(*) AS c FROM bookings
+    GROUP BY room_number
+    HAVING c IN (
+        SELECT distinct count(*) AS c FROM bookings
+        GROUP BY room_number ORDER BY c DESC LIMIT 5
+    )
+) --=> Возвращает номера комнат(room_number), которые бронировали чаще всего, а также место занимаемое в топе по кол-ву(с) бронирований(booking_rank):
+room_number  c           booking_rank
+-----------  ----------  ------------
+41           470         1
+4            462         2
+49           462         2
+15           454         3
+32           451         4
+6            441         5
+
+
+WITH rooms_with_mb AS 
+(SELECT room_number FROM rooms WHERE has_minibar=1) --=> выделили select в новую таблицу, которую потом можно использовать в рамках исполняемого файла
+}
+
+
+
+
+
+
+
+
+
+
 
 -- Выше лишь малая часть всего синтаксиса SQL, дальше круче...
 
