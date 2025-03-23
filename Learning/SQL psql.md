@@ -120,7 +120,7 @@ SELECT
 FROM rooms;
 }
 
-|*--------*|
+|*-------------------------------*|
 Подзапросы и СТЕ(конструкция WITH){ --вложенные select'ы 
 
 SELECT room_number, с, DENSE_RANK() over (
@@ -147,10 +147,18 @@ WITH rooms_with_mb AS
 (SELECT room_number FROM rooms WHERE has_minibar=1) --=> выделили select в новую таблицу, которую потом можно использовать в рамках исполняемого файла
 }
 
+|*--------------*|
+Объединение JOIN {
+
+SELECT c.name, a.age FROM clients c JOIN ages a ON c.client_id = a.client_id; --=> INNER JOIN (возвращает только пересечение множеств)
+
+SELECT ... LEFT JOIN ... --=> возвращает пересечение множеств и оставшиеся записи из левой таблицы (для них вместо соотв-его значения из правой таблицы будет NULL)
+
+SELECT ... RIGHT JOIN ... --=> возвращает пересечение множеств и осатавшиеся записи из правой таблицы
 
 
-
-
+SELECT ... FULL JOIN ... --=> по сути это LEFT JOIN объединенный с RIGHT JOIN. (Иногда наз FULL OUTER JOIN)
+}
 
 
 
