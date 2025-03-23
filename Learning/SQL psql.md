@@ -81,7 +81,13 @@ SELECT car_mark, name, count(*) OVER (PARTITION BY car_mark) FROM clients;
 Приятнее смотреть: ...OVER (PARTITION BY car_mark ORDER BY car_mark)...
 
 SELECT min(age) FROM clients 
-	UNION SELECT max(age) FROM clients; --=> объединение/склейка таблиц (в данном случае результат - две строчки)
+	UNION SELECT max(age) FROM clients; --=> объединение/склейка таблиц (вертикальное объединение)
+
+UNION --=> объединяет и удаляет дубликаты
+UNION ALL --=> объединяет и оставляет дубликаты
+
+INTERSECT --=> уникальные строки, присутствующие в обеих таблицах
+EXCEPT --=> строки из первой таблицы, которых нет во второй таблице
 }
 
 |*-------------------------*|
@@ -152,15 +158,15 @@ WITH rooms_with_mb AS
 
 SELECT c.name, a.age FROM clients c JOIN ages a ON c.client_id = a.client_id; --=> INNER JOIN (возвращает только пересечение множеств)
 
-SELECT ... LEFT JOIN ... --=> возвращает пересечение множеств и оставшиеся записи из левой таблицы (для них вместо соотв-его значения из правой таблицы будет NULL)
+SELECT ... LEFT JOIN ... ON ... --=> возвращает пересечение множеств и оставшиеся записи из левой таблицы (для них вместо соотв-его значения из правой таблицы будет NULL)
 
-SELECT ... RIGHT JOIN ... --=> возвращает пересечение множеств и осатавшиеся записи из правой таблицы
+SELECT ... RIGHT JOIN ... ON ... --=> возвращает пересечение множеств и осатавшиеся записи из правой таблицы
 
 
-SELECT ... FULL JOIN ... --=> по сути это LEFT JOIN объединенный с RIGHT JOIN. (Иногда наз FULL OUTER JOIN)
+SELECT ... FULL JOIN ... ON ... --=> по сути это LEFT JOIN объединенный с RIGHT JOIN. (Иногда наз FULL OUTER JOIN)
 }
 
-
+SELECT ... FROM clients CROSS JOIN ages --=> выводит записи по принципу "каждый с каждым"
 
 
 
