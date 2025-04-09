@@ -290,6 +290,16 @@ arr.shape # -=> (2, 2)
 arr[1,1] # -=> 4.
 ```
 
+> `load` и `save`. Загрузка/выгрузка массива из файла
+
+```python
+data = np.load('../data/bernoulli.npy')
+
+data = np.random.binomial(n=1, p=p, size=size) # см. Random
+
+np.save('bernoulli.npy', data)
+```
+
 > `eye`, `zeros` и `ones`. Единичный\нулевой массив
 
  ```python
@@ -336,6 +346,24 @@ arr.T # -=> array([[0, 3],
 	#		       [2, 5]])
 ```
 
+> `flip`. Перевернуть массив вдоль оси (по умолчанию вдоль всех осей)
+
+```python
+mat = np.array([[1, 0, 0], 
+			    [0, 2, 0], 
+			    [0, 0, 3]])
+			  
+np.flip(mat)
+3 0 0
+0 2 0
+0 0 1
+
+np.flip(mat, axis=0)          np.flip(mat, axis=1)
+0 0 3                         0 0 1
+0 2 0                         0 2 0
+1 0 0                         3 0 0
+```
+
 > `vectorize` и `where`. Аналог `apply` и Аналог фильтра. 
 
 ```python
@@ -371,6 +399,8 @@ arr[(arr > 1) & (arr % 2 == 0)] # -=> array([2., 4., 6.])
 7. **`np.sin(), np.cos(), np.exp(), np.log()`** – Тригонометрия и экспоненты.
     
 8. **`np.dot()` / `@`** – Скалярное и матричное умножение.
+
+9. **`np.round()`** - Округление
 
 > Линейная алгебра
 
@@ -484,6 +514,7 @@ df.values   # numpy-массив данных
 ```
 
 > `read_csv` и `to_csv`. Ввод/вывод
+
 ```python
 pd.read_csv('file.csv')   # чтение CSV
 df.to_csv('output.csv')   # запись в CSV
@@ -505,6 +536,12 @@ df[df['A'] > 1]              # фильтр по значениям
 df.query('A > 1 & B == "y"') # SQL-подобный синтаксис
 ```
 
+> `select_dtypes`.  Выбрать колонки определенного типа.
+
+```python
+df.select_dtypes(include=[int, float])
+```
+
 > `drop`. Добавление/удаление
 
 ```python
@@ -515,10 +552,15 @@ df.drop('A', axis=1)     # удалить колонку
 > `groupby` и `agg`. Группировка и агрегация
 
 ```python
-df.groupby('B').sum()     # группировка по колонке
-df.groupby('B').agg({
-    'A': ['sum', 'mean']  # несколько агрегаторов
-})
+df.groupby('B').sum()           # группировка по колонке
+
+df.groupby('department').agg(
+	{'income': ['mean', 'max']} # несколько агрегаторов
+).round(2)                      
+
+df.groupby('department').agg(
+    {'age': lambda x: x.std() / x.mean()} # кастомный агрегатор
+)            
 ```
 
 > `dropna` и `isna`. Работа с пропусками
@@ -538,19 +580,37 @@ pd.merge(df1, df2, left_on='user_id', right_on='renter_id', how='left')
 pd.concat([df1, df2])          # вертикальное объединение
 ```
 
-> `sample` и `describe`. Просмотр данных\статистик
+> `sort_values`, `sample` и `describe`. Просмотр данных\статистик
 
 ```python
 df.head()       # первые 5 строк
+df.tail()       # последние 5 строк
 df.sample(7)     # рандомные 7 строк
 df.describe()   # статистика
+df.info()      # общие характеристики данных
+
 df.sort_values('A')  # сортировка
+df.performance.sort_values(ascending=False).round(3).head().to_list()
+df.sort_values(['age', 'bonus']).bonus.round(2).head().to_list()
 ```
 
-> `apply`. Функция над элементами
+> `apply` и `agg`. Функция/Агрегация над элементами
 
 ```python
 df.apply(lambda x: x*2)
+
+df.income.agg(lambda x: x.std()/x.mean())
+```
+
+> `value_counts`. Частотный столбец
+
+```python
+df['Fruits'].value_counts(normalize=True, ascending=True)
+
+#   яблоко     3
+#   банан      2
+#   апельсин   1
+#   dtype: int64
 ```
 
 > `pivot_table`. Сводная таблица 
@@ -627,4 +687,21 @@ df.plot.scatter(x='A', y='B')  # точечный график
 и тд тп
 ```
 
+### Scipy
 
+> `scipy.stats`
+
+пример:
+```python
+from scipy import stats
+
+.pmf P(X=k) для ДИСКРЕТНЫХ сл.в.      # ф. вероятности
+.pdf P(a<=X<b) для НЕПРЕРЫВНЫХ сл.в.  # ф. плотности
+.cdf P(X<=x) для ЛЮБЫХ сл.в.          # ф. распределения
+
+(1 - stats.binom.cdf(k=59, n=100, p=bernoulli_sample.mean()))
+
+stats.poisson.pmf(k=3, mu=poisson_sample.mean())
+
+(1 - stats.poisson.cdf(k=5, mu=poisson_sample.mean()))
+```
