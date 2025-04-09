@@ -539,7 +539,7 @@ df.query('A > 1 & B == "y"') # SQL-подобный синтаксис
 > `select_dtypes`.  Выбрать колонки определенного типа.
 
 ```python
-df.select_dtypes(include=[int, float])
+df.select_dtypes(include=[int, float]) 
 ```
 
 > `drop`. Добавление/удаление
