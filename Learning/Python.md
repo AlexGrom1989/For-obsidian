@@ -451,6 +451,7 @@ res = re.search(r'(Analytics)(\d)', 'AV Analytics1 Vidhya AV')
 print(res.group()) # -> 'Analytics1'
 print(res[0]) # -> 'Analytics1'
 print(res[1]) # -> 'Analytics'
+print(res[2]) # -> '1'
 ```
 
 ```python

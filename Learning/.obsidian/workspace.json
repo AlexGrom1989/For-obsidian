@@ -1,20 +1,24 @@
 {
   "main": {
-    "id": "681d44c8d3fcf1f3",
+    "id": "e352716050e02b2f",
     "type": "split",
     "children": [
       {
-        "id": "7927874ca3d707b8",
+        "id": "c6dc2ad7e4d15060",
         "type": "tabs",
         "children": [
           {
-            "id": "bde190e3acb2a63e",
+            "id": "ab70c41e88b6b022",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Linux.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Linux"
             }
           }
         ]
@@ -23,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "cbc81915dbd5d78e",
+    "id": "b89be3fdac300060",
     "type": "split",
     "children": [
       {
-        "id": "69173f6ec23f219b",
+        "id": "e2d9131bab6b6d85",
         "type": "tabs",
         "children": [
           {
-            "id": "49f1a95832467ace",
+            "id": "bd79c20725e5a18d",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +48,7 @@
             }
           },
           {
-            "id": "2cfe99b3179bdac8",
+            "id": "877d239fefe46a23",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +65,7 @@
             }
           },
           {
-            "id": "cde5ff1e2c5343e5",
+            "id": "dcc2a846463037c9",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -74,18 +78,18 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300
   },
   "right": {
-    "id": "5ecf40bb5bad1dfe",
+    "id": "4f1a3708e85903ca",
     "type": "split",
     "children": [
       {
-        "id": "a7e494ecda91c246",
+        "id": "6ecbed0367587b81",
         "type": "tabs",
         "children": [
           {
-            "id": "20571e573d445f11",
+            "id": "1e971b6b4416bdbb",
             "type": "leaf",
             "state": {
               "type": "backlink",
@@ -103,7 +107,7 @@
             }
           },
           {
-            "id": "2462fbc943999d85",
+            "id": "e5fccb2c91b866f8",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
@@ -116,24 +120,30 @@
             }
           },
           {
-            "id": "87937b84d4c4f7e0",
+            "id": "24412c96119254fb",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-tags",
               "title": "Tags"
             }
           },
           {
-            "id": "b2e70074ad864908",
+            "id": "8d175173677fdafd",
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {},
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
               "icon": "lucide-list",
               "title": "Outline"
             }
@@ -142,7 +152,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
+    "width": 300,
     "collapsed": true
   },
   "left-ribbon": {
@@ -155,35 +165,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "49f1a95832467ace",
+  "active": "ab70c41e88b6b022",
   "lastOpenFiles": [
-    "Learning/C & C++.md",
-    "Learning/Frameworks & Libraries.md",
-    "Learning/Python.md",
-    "Learning/ML.md",
-    "Pasted image 20250407194409.png",
-    "Frameworks & Libraries/numpy.md",
-    "Frameworks & Libraries",
-    "Pasted image 20250407202417.png",
-    "Pasted image 20250407201445.png",
-    "Pasted image 20250407195814.png",
-    "Pasted image 20250407194832.png",
-    "Learning/Docker.md",
-    "Learning/SQL psql.md",
-    "Learning/Git.md",
-    "Learning/Linux.md",
-    "Техническое задание.md",
-    "Резюме.md",
-    "Untitled.canvas",
-    "2025-02-17.md",
-    "Learning.md",
-    "Планы на второе полугодие.md",
-    "Learning",
-    "IMG_20250130_200518_951.jpg",
-    "photo_2024-09-10_18-55-37.jpg",
-    "home/alex/Downloads.md",
-    "home/alex/Downloads 1.md",
-    "home/alex",
-    "home"
+    "Docker.md",
+    "Git.md",
+    "C & C++.md",
+    "Python.md",
+    "2025-06-04.md"
   ]
 }
