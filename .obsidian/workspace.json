@@ -1,0 +1,215 @@
+{
+  "main": {
+    "id": "5f9c1637aca8a3f2",
+    "type": "split",
+    "children": [
+      {
+        "id": "fae5ca7ee2ce5251",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4c84414336e4191b",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Общая теория.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Общая теория"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a67674842961b6cf",
+    "type": "split",
+    "children": [
+      {
+        "id": "dbee150ead78f455",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3d4f958a8dd48e91",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Файловый менеджер"
+            }
+          },
+          {
+            "id": "cc8522dfeaa32761",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "41dfc2e5a0410505",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 261.5
+  },
+  "right": {
+    "id": "cfe7f8cd439bf571",
+    "type": "split",
+    "children": [
+      {
+        "id": "a5dfb38e314eedc6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "188bced8f13d90d4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "РК3 ТРПС.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for РК3 ТРПС"
+            }
+          },
+          {
+            "id": "532902ba8f639d5c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "РК3 ТРПС.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from РК3 ТРПС"
+            }
+          },
+          {
+            "id": "63f2d79fc59411f5",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e68eeb36f8f83d9b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "РК3 ТРПС.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of РК3 ТРПС"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "obsidian-excalidraw-plugin:Создать новый чертеж": false
+    }
+  },
+  "active": "4c84414336e4191b",
+  "lastOpenFiles": [
+    "Резюме.md",
+    "attachments/photo_2024-09-10_18-55-37.jpg",
+    "attachments/Pasted image 20250407202417.png",
+    "attachments/Pasted image 20250407201445.png",
+    "attachments/Pasted image 20250407195814.png",
+    "attachments/Pasted image 20250407194832.png",
+    "attachments/Pasted image 20250407194409.png",
+    "Learning/Git.md",
+    "Learning/SQL psql.md",
+    "Learning/Python.md",
+    "Learning/ML.md",
+    "Learning/Linux.md",
+    "Learning/Frameworks & Libraries.md",
+    "Learning/Docker.md",
+    "Learning/C & C++.md",
+    "Learning",
+    "attachments/IMG_20250130_200518_951.jpg",
+    "attachments/Pasted Image 20250707151601_470.png",
+    "attachments/Pasted Image 20250706175956_754.png",
+    "attachments/Pasted Image 20250706005323_002.png",
+    "attachments",
+    "Excalidraw/Регрессия.md",
+    "Excalidraw/Ранжирование.md",
+    "Excalidraw/ПМО.md",
+    "Excalidraw/Оценка и сравнение моделей.md",
+    "Excalidraw/Общая теория.md",
+    "Excalidraw/Кластеризация.md",
+    "Excalidraw/Выявление аномалий.md",
+    "Excalidraw/Классификация.md",
+    "Excalidraw/Ассоциации.md",
+    "Excalidraw/Unsupervised Learning.md",
+    "Excalidraw/Supervised Learning.md",
+    "Excalidraw/Classic ML.md",
+    "Excalidraw",
+    "Новая папка",
+    "Excalidraw/Drawing 2025-07-07 17.34.02.excalidraw.md",
+    "Excalidraw/Drawing 2025-07-05 20.01.49.excalidraw.md",
+    "Excalidraw/Scripts/Downloaded/Split text by lines.md",
+    "Excalidraw/Scripts/Downloaded",
+    "Excalidraw/Scripts",
+    "Untitled.canvas",
+    "2025-07-05.md"
+  ]
+}
