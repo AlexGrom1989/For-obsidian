@@ -1,20 +1,24 @@
 {
   "main": {
-    "id": "5f9c1637aca8a3f2",
+    "id": "e352716050e02b2f",
     "type": "split",
     "children": [
       {
-        "id": "fae5ca7ee2ce5251",
+        "id": "c6dc2ad7e4d15060",
         "type": "tabs",
         "children": [
           {
-            "id": "4c84414336e4191b",
+            "id": "ab70c41e88b6b022",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Linux.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "Новая вкладка"
+              "title": "Linux"
             }
           }
         ]
@@ -23,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "a67674842961b6cf",
+    "id": "b89be3fdac300060",
     "type": "split",
     "children": [
       {
-        "id": "dbee150ead78f455",
+        "id": "e2d9131bab6b6d85",
         "type": "tabs",
         "children": [
           {
-            "id": "3d4f958a8dd48e91",
+            "id": "bd79c20725e5a18d",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -40,11 +44,11 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Файловый менеджер"
+              "title": "Files"
             }
           },
           {
-            "id": "cc8522dfeaa32761",
+            "id": "877d239fefe46a23",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +65,7 @@
             }
           },
           {
-            "id": "41dfc2e5a0410505",
+            "id": "dcc2a846463037c9",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -74,23 +78,22 @@
       }
     ],
     "direction": "horizontal",
-    "width": 261.5
+    "width": 300
   },
   "right": {
-    "id": "cfe7f8cd439bf571",
+    "id": "4f1a3708e85903ca",
     "type": "split",
     "children": [
       {
-        "id": "a5dfb38e314eedc6",
+        "id": "6ecbed0367587b81",
         "type": "tabs",
         "children": [
           {
-            "id": "188bced8f13d90d4",
+            "id": "1e971b6b4416bdbb",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "РК3 ТРПС.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,25 +103,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for РК3 ТРПС"
+              "title": "Backlinks"
             }
           },
           {
-            "id": "532902ba8f639d5c",
+            "id": "e5fccb2c91b866f8",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "РК3 ТРПС.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from РК3 ТРПС"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "63f2d79fc59411f5",
+            "id": "24412c96119254fb",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -133,18 +135,17 @@
             }
           },
           {
-            "id": "e68eeb36f8f83d9b",
+            "id": "8d175173677fdafd",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "РК3 ТРПС.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of РК3 ТРПС"
+              "title": "Outline"
             }
           }
         ]
@@ -156,59 +157,20 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Меню быстрого перехода": false,
-      "graph:Граф": false,
-      "canvas:Создать новый холст": false,
-      "daily-notes:Сегодняшняя заметка": false,
-      "templates:Вставить шаблон": false,
-      "command-palette:Открыть палитру команд": false,
-      "obsidian-excalidraw-plugin:Создать новый чертеж": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
     }
   },
-  "active": "3d4f958a8dd48e91",
+  "active": "ab70c41e88b6b022",
   "lastOpenFiles": [
-    "attachments/Pasted Image 20250707151601_470.png",
-    "attachments/Pasted Image 20250706175956_754.png",
-    "attachments/Pasted Image 20250706005323_002.png",
-    "attachments/Pasted Image 20250705231146_955.png",
-    "attachments/IMG_20250706_183414.jpg",
-    "attachments/IMG_20250706_183307.jpg",
-    "attachments",
-    "Excalidraw/Регрессия.md",
-    "Excalidraw/Ранжирование.md",
-    "Excalidraw/ПМО.md",
-    "Excalidraw/Оценка и сравнение моделей.md",
-    "Excalidraw/Общая теория.md",
-    "Excalidraw/Кластеризация.md",
-    "Excalidraw/Выявление аномалий.md",
-    "Excalidraw/Классификация.md",
-    "Excalidraw/Ассоциации.md",
-    "Excalidraw/Unsupervised Learning.md",
-    "Excalidraw/Supervised Learning.md",
-    "Excalidraw/Classic ML.md",
-    "Excalidraw",
-    "Резюме.md",
-    "photo_2024-09-10_18-55-37.jpg",
-    "Pasted image 20250407202417.png",
-    "Pasted image 20250407201445.png",
-    "Pasted image 20250407195814.png",
-    "Pasted image 20250407194832.png",
-    "Learning/SQL psql.md",
-    "Learning/Python.md",
-    "Learning/ML.md",
-    "Learning/Linux.md",
-    "Learning/Git.md",
-    "Learning/Frameworks & Libraries.md",
-    "Learning/Docker.md",
-    "Learning/C & C++.md",
-    "Learning",
-    "Новая папка",
-    "Excalidraw/Drawing 2025-07-07 17.34.02.excalidraw.md",
-    "Excalidraw/Drawing 2025-07-05 20.01.49.excalidraw.md",
-    "Excalidraw/Scripts/Downloaded/Split text by lines.md",
-    "Excalidraw/Scripts/Downloaded",
-    "Excalidraw/Scripts",
-    "Untitled.canvas",
-    "2025-07-05.md"
+    "Docker.md",
+    "Git.md",
+    "C & C++.md",
+    "Python.md",
+    "2025-06-04.md"
   ]
 }

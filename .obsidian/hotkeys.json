@@ -1,0 +1,18 @@
+{
+  "colored-text:color-text": [
+    {
+      "modifiers": [
+        "Shift"
+      ],
+      "key": "Enter"
+    }
+  ],
+  "colored-text:remove-color": [
+    {
+      "modifiers": [
+        "Shift"
+      ],
+      "key": "ArrowLeft"
+    }
+  ]
+}
