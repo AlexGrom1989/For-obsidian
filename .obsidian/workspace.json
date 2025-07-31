@@ -1,22 +1,24 @@
 {
   "main": {
-    "id": "5f9c1637aca8a3f2",
+    "id": "92853681526a023e",
     "type": "split",
     "children": [
       {
-        "id": "fae5ca7ee2ce5251",
+        "id": "0ca7f676db9b97de",
         "type": "tabs",
         "children": [
           {
-            "id": "4c84414336e4191b",
+            "id": "7e5f37decc52c205",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Общая теория.md"
+                "file": "Learning/Docker.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Общая теория"
+              "icon": "lucide-file",
+              "title": "Docker"
             }
           }
         ]
@@ -25,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "a67674842961b6cf",
+    "id": "dfab507527f6d0b4",
     "type": "split",
     "children": [
       {
-        "id": "dbee150ead78f455",
+        "id": "50c7233807743146",
         "type": "tabs",
         "children": [
           {
-            "id": "3d4f958a8dd48e91",
+            "id": "240f428fa43148c6",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -42,11 +44,11 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Файловый менеджер"
+              "title": "Files"
             }
           },
           {
-            "id": "cc8522dfeaa32761",
+            "id": "e59af11f081b0158",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -63,7 +65,7 @@
             }
           },
           {
-            "id": "41dfc2e5a0410505",
+            "id": "af441ef40eb9d113",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -76,23 +78,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 261.5
+    "width": 300
   },
   "right": {
-    "id": "cfe7f8cd439bf571",
+    "id": "975f35c5699d1ec8",
     "type": "split",
     "children": [
       {
-        "id": "a5dfb38e314eedc6",
+        "id": "9ec2ae9ab1f5126a",
         "type": "tabs",
         "children": [
           {
-            "id": "188bced8f13d90d4",
+            "id": "190befeac76bef78",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "РК3 ТРПС.md",
+                "file": "Learning/Docker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for РК3 ТРПС"
+              "title": "Backlinks for Docker"
             }
           },
           {
-            "id": "532902ba8f639d5c",
+            "id": "612506f52712f72f",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "РК3 ТРПС.md",
+                "file": "Learning/Docker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from РК3 ТРПС"
+              "title": "Outgoing links from Docker"
             }
           },
           {
-            "id": "63f2d79fc59411f5",
+            "id": "ccd59f64cd398fea",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -135,18 +137,18 @@
             }
           },
           {
-            "id": "e68eeb36f8f83d9b",
+            "id": "62db6455dc7ab4b1",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "РК3 ТРПС.md",
+                "file": "Learning/Docker.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of РК3 ТРПС"
+              "title": "Outline of Docker"
             }
           }
         ]
@@ -158,58 +160,51 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Меню быстрого перехода": false,
-      "graph:Граф": false,
-      "canvas:Создать новый холст": false,
-      "daily-notes:Сегодняшняя заметка": false,
-      "templates:Вставить шаблон": false,
-      "command-palette:Открыть палитру команд": false,
-      "obsidian-excalidraw-plugin:Создать новый чертеж": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
     }
   },
-  "active": "4c84414336e4191b",
+  "active": "7e5f37decc52c205",
   "lastOpenFiles": [
+    "create a link.md",
     "Резюме.md",
     "attachments/photo_2024-09-10_18-55-37.jpg",
+    "attachments/Pasted Image 20250707151601_470.png",
+    "attachments/Pasted Image 20250706175956_754.png",
+    "attachments/Pasted Image 20250706005323_002.png",
+    "attachments/Pasted Image 20250705231146_955.png",
     "attachments/Pasted image 20250407202417.png",
     "attachments/Pasted image 20250407201445.png",
     "attachments/Pasted image 20250407195814.png",
     "attachments/Pasted image 20250407194832.png",
     "attachments/Pasted image 20250407194409.png",
-    "Learning/Git.md",
+    "attachments",
     "Learning/SQL psql.md",
     "Learning/Python.md",
     "Learning/ML.md",
     "Learning/Linux.md",
     "Learning/Frameworks & Libraries.md",
     "Learning/Docker.md",
+    "Learning/Git.md",
     "Learning/C & C++.md",
     "Learning",
-    "attachments/IMG_20250130_200518_951.jpg",
-    "attachments/Pasted Image 20250707151601_470.png",
-    "attachments/Pasted Image 20250706175956_754.png",
-    "attachments/Pasted Image 20250706005323_002.png",
-    "attachments",
     "Excalidraw/Регрессия.md",
     "Excalidraw/Ранжирование.md",
     "Excalidraw/ПМО.md",
     "Excalidraw/Оценка и сравнение моделей.md",
     "Excalidraw/Общая теория.md",
     "Excalidraw/Кластеризация.md",
-    "Excalidraw/Выявление аномалий.md",
     "Excalidraw/Классификация.md",
+    "Excalidraw/Выявление аномалий.md",
     "Excalidraw/Ассоциации.md",
     "Excalidraw/Unsupervised Learning.md",
     "Excalidraw/Supervised Learning.md",
     "Excalidraw/Classic ML.md",
     "Excalidraw",
-    "Новая папка",
-    "Excalidraw/Drawing 2025-07-07 17.34.02.excalidraw.md",
-    "Excalidraw/Drawing 2025-07-05 20.01.49.excalidraw.md",
-    "Excalidraw/Scripts/Downloaded/Split text by lines.md",
-    "Excalidraw/Scripts/Downloaded",
-    "Excalidraw/Scripts",
-    "Untitled.canvas",
-    "2025-07-05.md"
+    "Welcome.md"
   ]
 }

@@ -1,6 +1,6 @@
 ```powershell
 git clone https://gitlab.bmstu.ru/devops-dataops-intro/labs/2-docker.git
-
+ 
 # Set up Docker's apt repository.
 # Add Docker's official GPG key:
 sudo apt-get update
