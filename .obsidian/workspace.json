@@ -11,12 +11,14 @@
             "id": "4c84414336e4191b",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Общая теория.md"
+                "file": "Learning/Frameworks & Libraries.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Общая теория"
+              "icon": "lucide-file",
+              "title": "Frameworks & Libraries"
             }
           }
         ]
@@ -163,12 +165,13 @@
       "canvas:Создать новый холст": false,
       "daily-notes:Сегодняшняя заметка": false,
       "templates:Вставить шаблон": false,
-      "command-palette:Открыть палитру команд": false,
-      "obsidian-excalidraw-plugin:Создать новый чертеж": false
+      "command-palette:Открыть палитру команд": false
     }
   },
   "active": "4c84414336e4191b",
   "lastOpenFiles": [
+    "Learning/Python.md",
+    "Excalidraw/Общая теория.md",
     "Резюме.md",
     "attachments/photo_2024-09-10_18-55-37.jpg",
     "attachments/Pasted image 20250407202417.png",
@@ -178,7 +181,6 @@
     "attachments/Pasted image 20250407194409.png",
     "Learning/Git.md",
     "Learning/SQL psql.md",
-    "Learning/Python.md",
     "Learning/ML.md",
     "Learning/Linux.md",
     "Learning/Frameworks & Libraries.md",
@@ -194,7 +196,6 @@
     "Excalidraw/Ранжирование.md",
     "Excalidraw/ПМО.md",
     "Excalidraw/Оценка и сравнение моделей.md",
-    "Excalidraw/Общая теория.md",
     "Excalidraw/Кластеризация.md",
     "Excalidraw/Выявление аномалий.md",
     "Excalidraw/Классификация.md",
