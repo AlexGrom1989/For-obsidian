@@ -11,14 +11,10 @@
             "id": "7e5f37decc52c205",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Learning/Docker.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Docker"
+              "title": "New tab"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Learning/Docker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Docker"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Learning/Docker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Docker"
+              "title": "Outgoing links"
             }
           },
           {
@@ -142,13 +136,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Learning/Docker.md",
+                "file": "create a link.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Docker"
+              "title": "Outline of create a link"
             }
           }
         ]
@@ -168,43 +162,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7e5f37decc52c205",
+  "active": "240f428fa43148c6",
   "lastOpenFiles": [
-    "create a link.md",
-    "Резюме.md",
-    "attachments/photo_2024-09-10_18-55-37.jpg",
-    "attachments/Pasted Image 20250707151601_470.png",
-    "attachments/Pasted Image 20250706175956_754.png",
-    "attachments/Pasted Image 20250706005323_002.png",
-    "attachments/Pasted Image 20250705231146_955.png",
-    "attachments/Pasted image 20250407202417.png",
-    "attachments/Pasted image 20250407201445.png",
-    "attachments/Pasted image 20250407195814.png",
-    "attachments/Pasted image 20250407194832.png",
-    "attachments/Pasted image 20250407194409.png",
-    "attachments",
-    "Learning/SQL psql.md",
-    "Learning/Python.md",
-    "Learning/ML.md",
-    "Learning/Linux.md",
-    "Learning/Frameworks & Libraries.md",
-    "Learning/Docker.md",
-    "Learning/Git.md",
-    "Learning/C & C++.md",
-    "Learning",
-    "Excalidraw/Регрессия.md",
-    "Excalidraw/Ранжирование.md",
-    "Excalidraw/ПМО.md",
-    "Excalidraw/Оценка и сравнение моделей.md",
-    "Excalidraw/Общая теория.md",
-    "Excalidraw/Кластеризация.md",
-    "Excalidraw/Классификация.md",
-    "Excalidraw/Выявление аномалий.md",
-    "Excalidraw/Ассоциации.md",
-    "Excalidraw/Unsupervised Learning.md",
-    "Excalidraw/Supervised Learning.md",
-    "Excalidraw/Classic ML.md",
-    "Excalidraw",
-    "Welcome.md"
+    "Welcome.md",
+    "create a link.md"
   ]
 }
