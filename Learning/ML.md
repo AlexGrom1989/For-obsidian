@@ -2,3 +2,5 @@
 
 [[Frameworks & Libraries#^2|Пособие по Pandas]]
 
+[[Classic ML]]
+
