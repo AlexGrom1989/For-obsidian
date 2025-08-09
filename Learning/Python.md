@@ -279,8 +279,8 @@ for i in a:
 def counter(num: int=9):
 	while True:
 		tmp = (yield)
-	if num == tmp % 3: 
-		print(tmp)
+		if num == tmp % 3: 
+			print(tmp)
   
 def main():
 	Counter = counter(2)
@@ -317,6 +317,27 @@ def main():
   
 main()
 ```
+
+> `yiled from` - позволяет делегировать вычисления одного генератора на другие. Также можно использовать для рекурсии или c итерируемыми объектами:
+
+```python
+def sub_generator():
+    yield 1
+    yield 2
+
+def main_generator():
+    yield from sub_generator()  # Делегируем выполнение подгенератору
+    yield from [3, 4] # т.е. не нужно писать цикл, это просто упрощает код
+    yield 5
+
+for num in main_generator():
+    print(num, end=' ')
+```
+output:
+```
+1 2 3 4 5
+```
+
 ---
 
 ### Datetime
@@ -601,6 +622,13 @@ def main():
 		print("(END)")
 main()
 ```
+output:
+```
+Alex 
+Alexey 
+Impossible to delete attribute. 
+(END)
+```
 ---
 ### Dataclasses
 
@@ -636,9 +664,9 @@ class DBConnection:
         self.conn.close()
 
 with DBConnection('MyDBase.db') as conn: 
-	# принимает в conn результат работы метода .__call__(self)
-	cursor.execute('SELECT * FROM table_name')
-	result = cursor.fetchall()
+	# принимает в conn результат работы метода .__enter__(self)
+	conn.execute('SELECT * FROM table_name')
+	result = conn.fetchall()
 	print(result)
 	# вызывает .__exit__(self)
 ```
@@ -648,8 +676,8 @@ with DBConnection('MyDBase.db') as conn:
 ```python
 try:
 	conn = sqlite.connect('MyDBase.db')
-	cursor.execute('SELECT * FROM table_name')
-	result = cursor.fetchall()
+	conn.execute('SELECT * FROM table_name')
+	result = conn.fetchall()
 	print(result)
 finally:
 	conn.close()
@@ -687,10 +715,10 @@ asyncio.run(example())
 > Дескриптор - это класс для описания поведения атрибутов другого класса.
 ```python
 class TypedProperty(object):
-	def __init__(self,name,type,value=None):
-		self.name = "_" + name
-		self.type = type
-		self.value = value if value else type()
+	def __init__(self, name_, type_, value_=None):
+		self.name = "_" + name_
+		self.type = type_
+		self.value = value_ if value_ else type()
 	  
 	def __get__(self,instance,cls):
 		return getattr(instance,self.name,self.value)
@@ -780,7 +808,7 @@ def main():
  ЯДРО умеет выделять НЕзависимые друг от друга ПРОЦЕССЫ.
 ПРОЦЕССЫ могут выделять внутри себя ПОТОКИ, которые в свою очередь могут обращаться к одним данным из ПРОЦЕССА.
 Несколько ПОТОКОВ могут увеличивать число ссылок на данные, откуда появляются проблемы со сборщиком мусора. 
-Т.о. сборщик мусора глобальный и многопоточность в Python все равно реализует последовательное выполнение при работе с общими данными.
+Т.о. сборщик мусора глобальный и многопоточность в Python все равно реализует последовательное выполнение при работе с ОБЩИМИ данными.
 
 > Threading - (thread = поток)
 
@@ -804,7 +832,7 @@ def main():
 	print("Главный поток тоже продолжает исполняться")
 
 	for thread in threads:
-		thread.join() # waits for thread to complete its task
+		thread.join() # Ждем пока завершаться вторичные потоки, прежде чем закрывать главный!
 	print("Main Ended")
 
 main()

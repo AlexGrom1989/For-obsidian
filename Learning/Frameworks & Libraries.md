@@ -267,7 +267,7 @@ if __name__ == "__main__":
 
 ```python
 import numpy as np
-np.random_seed(42)
+np.random.seed(42)
 ```
 
 > `ndarray` и `empty`. Основной класс `NDArray`. Сам по себе это макет для хранения  n-мерных массивов. 
@@ -308,7 +308,7 @@ np.save('bernoulli.npy', data)
  np.zeros((2, 3), dtype=bool)
 ```
 
-> `range` и `linspace`. Послед-ть и Точки на интервале
+> `arange` и `linspace`. Послед-ть и Точки на интервале
 
 ```python
 np.arange(3, 10, 2) # -=> array([3, 5, 7, 9])   аналог range
@@ -399,16 +399,16 @@ arr[(arr > 1) & (arr % 2 == 0)] # -=> array([2., 4., 6.])
 7. **`np.sin(), np.cos(), np.exp(), np.log()`** – Тригонометрия и экспоненты.
     
 8. **`np.dot()` / `@`** – Скалярное и матричное умножение.
-
+	
 9. **`np.round()`** - Округление
 
 > Линейная алгебра
 
-1. **`np.linalg.inv()`** – Обратная матрица.
+10. **`np.linalg.inv()`** – Обратная матрица.
     
-2. **`np.linalg.det()`** – Определитель матрицы.
+11. **`np.linalg.det()`** – Определитель матрицы.
     
-3. **`np.linalg.eig()`** – Собственные значения и векторы.
+12. **`np.linalg.eig()`** – Собственные значения и векторы.
 
 ##### `Numpy.Random`
 
@@ -427,6 +427,7 @@ np.random.shuffle([1, 2, 3, 4]) # -=> перемешивание
 > uniform - Равномерное распр.
 ```python
 np.random.uniform(low=0., high=1., size=(2, 3))
+# kop = np.random.uniform(low=0., high=1., size=(10000))
 # plt.hist(kop, bins=30, edgecolor='black')
 ```
 
