@@ -317,6 +317,12 @@ np.arange(3, 10, 2) # -=> array([3, 5, 7, 9])   аналог range
 np.linspace(3, 10, 2) # -=> array([3., 10.])   две точки на [3, 10]
 ```
 
+> `column_stack`. Присоединение 1D к 2D / Добавление столбца
+
+```python
+X = np.column_stack([np.ones(len(X)), X]) # -=> добавит столбец единиц к матрице X
+```
+
 > `append` и `concatenate`. Добавление и Объединение
 
 ```python
@@ -725,3 +731,270 @@ stats.poisson.pmf(k=3, mu=poisson_sample.mean())
 
 (1 - stats.poisson.cdf(k=5, mu=poisson_sample.mean()))
 ```
+
+### PyTorch
+#pytorch^4
+
+Читать про autograd: part_2_torch_autograd.ipynb, здесь можно узнать как создать свой оптимизатор или функцию потерь, а также как работает механизм генерации градиентов.
+
+```python
+import torch
+```
+
+>  tensor
+
+```python
+X = torch.tensor([[1, 2, 3], [4, 5, 6]]) # то же что numpy массив, но любой объект всегда - вектор
+X.numpy() # -> to numpy
+X.tolist() # -> to list -=> [[1, 2, 3], [4, 5, 6]]
+```
+
+```python
+# аналог np.concatenate([x_tensor, y_tensor], axis=1)
+torch.cat([X, X], dim=1) # -=> tensor([[1, 2, 3],
+							        #  [4, 5, 6],
+							        #  [1, 2, 3],
+							        #  [4, 5, 6]])
+```
+
+```python
+x_tensor = torch.tensor([[[[4]]]])
+
+x_tensor.item() # -=> 4
+```
+
+```python
+X.view(-1), X.view(-1, 1), X.view(-1, 3) # -=> 
+#(tensor([1, 2, 3, 4, 5, 6]),
+# tensor([[1],
+    #     [2],
+    #     [3],
+    #     [4],
+    #     [5],
+    #     [6]]),
+# tensor([[1, 2, 3],
+    #    [4, 5, 6]]))
+```
+
+> nn
+
+```python
+import torch.nn as nn
+
+linear_layer = nn.Linear(in_features=5, out_features=3, bias=True)
+```
+
+```python
+activation = nn.Tanh() # функция активации
+```
+
+```python
+random_input = torch.rand(5)
+
+x = linear_layer(random_input)
+output = activation(x)
+
+x, output # -=> (tensor([ 0.1540,  0.2912, -0.6888], grad_fn=<ViewBackward0>),
+		  #      tensor([ 0.1528,  0.2833, -0.5972], grad_fn=<TanhBackward0>))
+```
+
+ Обратим внимание на `grad_fn=`. Такая приписка будет появляться на всех тензорах, которые являются обучающими параметрами в нейросети. Это значит, что для данного тензора в процессе обучения сети будет вычисляться градиент, с помощью которого значения тензора будут обновляться.
+
+```python
+class Net(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        self.fc1 = nn.Linear(2, 2)
+        self.act1 = nn.Sigmoid() # можно заменить на nn.Tanh / nn.ReL``` ...
+
+        self.fc2 = nn.Linear(2, 1)
+        self.act2 = nn.Sigmoid()
+
+    def forward(self, x):
+        """
+        params:
+        x (torch.Tensor): данные, поданные на вход сети
+        """
+
+        x = self.fc1(x)
+        x = self.act1(x)
+
+        x = self.fc2(x)
+        x = self.act2(x)
+        return x
+```
+
+```python
+from tqdm.auto import tqdm
+
+def train(model, X, y, criterion, optimizer, num_epoch):
+    '''
+    args:
+    model - модель нейронной сети
+    X и y - обучающая выборка
+    criterion - функция потерь, взятая из модуля `torch.nn`
+    optimizer - оптимизатор, взятый из модуля `torch.optim`
+    num_epoch - количество эпох обучения.
+    '''
+    # цикл по количеству эпох обучения
+    for t in tqdm(range(num_epoch)):
+        # Вычислим предсказания наш```модели
+        y_pred = model(X)
+
+        # Посчитаем значение функции потерь на получен``` предсказании
+        loss = criterion(y_pred, y)
+
+        # Выполним подсчёт новых град```тов
+        loss.backward()
+        # Выполним шаг градиентного сп```а
+        optimizer.step()
+        # Обнулим сохраненные у опт```затора значения градиентов
+        # перед следующим шагом обучения```      optimizer.zero_grad()
+
+    return model
+```
+
+```python
+model = Net()
+```
+
+```python
+# лосс-функция — бинарная кросс-энтропия (aka LogLoss)
+criterion = torch.nn.BCELoss()
+
+optimizer = torch.optim.SGD(model.parameters(), lr=1e-2)
+# optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
+```
+
+```python
+X_train = torch.FloatTensor(X_train)
+y_train = torch.FloatTensor(y_train).view(-1, 1) # size [1000] -> [1000, 1]
+
+model = train(model, X_train, y_train, criterion, optimizer, 1500)
+```
+
+```python
+with torch.no_grad():
+    nn_prediction = model(torch.FloatTensor(X_test))
+    nn_prediction = nn_prediction.tolist()
+```
+
+> Dataloader и обучение по мини-батчам
+
+```python
+train_loader = torch.utils.data.DataLoader(list(zip(X_train, y_train)), batch_size=64, shuffle=True)
+test_loader = torch.utils.data.DataLoader(list(zip(X_test, y_test)), batch_size=64, shuffle=False)
+```
+
+ Здесь:
+ - `batch_size` — размер батча, на которые даталоадер будет делить данные перед каждой эпохой;
+ - `shuffle` — если `True`, то перед каждой эпохой и делением на батчи данные будут перемешаны. `Shuffle` обычно ставится `True` для обучающих данных, и `False` для тестовых.
+
+```python
+from tqdm.auto import tqdm
+
+def train_stochastic(model, loader, criterion, optimizer, num_```ch):
+    for t in tqdm(range(num_epoch)):
+        epoch_loss = []
+
+        for X_batch, y_batch in loader:
+            y_pred = model(X_batch)
+
+            loss = criterion(y_pred, y_batch)
+            epoch_loss.append(loss.item())
+
+            loss.backward() # вычисление градиентов весов
+            optimizer.step() # расчет шага по формуле, градиенты``` backward'а, и измен```е весов
+            optimizer.zero_grad() # обнуление шага весов
+
+    return model
+```
+
+```python
+model = train_stochastic(model, train_loader, criterion, optimizer,```0)
+```
+
+> nn.Sequential
+
+```python
+model = nn.Sequential(
+    nn.Linear(2, 2, bias=True),
+    nn.Sigmoid(),
+    nn.Linear(2, 1, bias=True),
+    nn.Sigmoid()
+)
+```
+
+ Этот способ создания сети выглядит проще (не нужно писать никакой класс и никакой forward), но он менее гибок. Дело в том, что, используя `nn.Sequential`, мы задаем только слои сети, и выполняться они будут при вызове сети ровно в том порядке, в котором мы их задали. Отсюда и название структуры Sequential — "последовательный". В случае же описания сети в виде класса мы могли в forward определять вид прохождения входа по сети сами. Например, могли бы сделать такую нейросеть:
+
+```python
+import torch.nn as nn
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+
+        self.fc11 = nn.Linear(2, 2)
+        self.act11 = nn.Sigmoid()
+
+        self.fc12 = nn.Linear(2, 2)
+        self.act12 = nn.Sigmoid()
+
+        self.fc2 = nn.Linear(4, 1)
+        self.act2 = nn.Sigmoid()
+
+    def forward(self, x1, x2):
+
+        x1 = self.fc11(x1)
+        x1 = self.act11(x1)
+
+        x2 = self.fc12(x2)
+        x2 = self.act12(x2)
+
+        x = torch.cat([x1, x2], dim=1)
+
+        x = self.fc2(x)
+        x = self.act2(x)
+        return x
+```
+
+ Таким образом, при задании сети в виде класса у нас есть большая гибкость в определении того, как сеть будет обрабатывать входные данные на каждой новой итерации.
+
+ Но, несмотря на это, `nn.Sequential` все-таки используется при создании сетей. Он часто используется внутри метода `__init__`, чтобы сгруппировать несколько слоев сети в блок. Например, вот так:
+
+```python
+import torch.nn as nn
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+
+        self.left_block = nn.Sequential(
+            nn.Linear(2, 2),
+            nn.Sigmoid()
+        )
+
+        self.right_block = nn.Sequential(
+            nn.Linear(2, 2),
+            nn.Sigmoid()
+        )
+
+        self.bottom_block = nn.Sequential(
+            nn.Linear(2, 2),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x, mode='left'):
+
+        if mode == 'left':
+            x = self.left_block(x)
+
+        elif mode == 'right':
+            x = self.right_block(x)
+
+        x = self.bottom_block(x)
+        return x
+```
+
+ Это становится особенно удобно при написании глубоких сетей, у которых много слоев. Мы еще увидим, как это используется, на примере глубоких сверточных сетей в 4 модуле курса.
