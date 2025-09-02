@@ -390,6 +390,14 @@ arr[::, ::2] # -=> array([[0., 3.],
 arr[(arr > 1) & (arr % 2 == 0)] # -=> array([2., 4., 6.])
 ```
 
+>`percentile`. Процентили === квантили в процентах
+
+```python
+data = [10, 20, 30, 40, 50]
+np.percentile(data, [25, 50, 75], method='linear')
+# -=> [17.5 30.0 42.5]
+```
+
 > `digitize` и `qunatile`. Маркировка диапазоном и поиск границ квантилей
 
 В pandas очень удобная альтернатива `pd.qcut(x, q=4)` см. [[Frameworks & Libraries#^30]]
