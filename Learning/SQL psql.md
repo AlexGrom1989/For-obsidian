@@ -273,6 +273,8 @@ FOR EACH ROW
 
 -- Пример функции (NEW это очередная запись в таблице):
 $$
+declare
+	i integer;
 begin
 	if NEW.student_amount < 75 then
 		raise exception 'ERROR: amount must be >= 75';
