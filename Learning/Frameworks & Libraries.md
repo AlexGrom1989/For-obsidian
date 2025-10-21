@@ -469,7 +469,7 @@ np.random.uniform(low=0., high=1., size=(2, 3))
 ---
 > normal - Нормальное распр.
 ```python
-kop=np.random.randn(size=(1000)) # -=> стандартное норм. распр.
+kop=np.random.randn((1000)) # -=> стандартное норм. распр.
 kop=np.random.normal(loc=0, scale=1, size=(1000)) # -=> с мат. ож. и дисп.
 # plt.hist(kop, bins=30, edgecolor='black')
 ```
