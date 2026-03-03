@@ -1,3 +1,4 @@
+Расширение - [[SQL]]
 ### Университетские конспекты
 
 > [!abstract] SQL - (Structured Query Language)
